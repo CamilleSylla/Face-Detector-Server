@@ -15,6 +15,7 @@ const database = {
             id: '123',
             name: 'John',
             email: 'john@email.com',
+            password: 'apple',
             entries: 0,
             joined: new Date()
         },
@@ -22,6 +23,7 @@ const database = {
             id: '321',
             name: 'Richard',
             email: 'richard@email.com',
+            password: 'juice',
             entries: 0,
             joined: new Date()
         }
@@ -40,12 +42,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/signin', (req, res) => {
-    bcrypt.compare("apples", '$2a$10$J77g/DwbIzXRwbdk9aA6oOUIvfZZVaQErS96gxWY3FxqQIzt6tF6G', function(err, res) {
-        console.log('first guess', res);
-    });
-    bcrypt.compare("veggies", '$2a$10$J77g/DwbIzXRwbdk9aA6oOUIvfZZVaQErS96gxWY3FxqQIzt6tF6G', function(err, res) {
-        console.log('second guess', res);
-    });
+    
     if (req.body.email === database.users[0].email && req.body.password === database.users[0].password) {
             res.json('succes');
 
